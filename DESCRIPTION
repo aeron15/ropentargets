@@ -1,8 +1,8 @@
 Package: ropentargets
-Title: What the Package Does (one line, title case)
+Title: Provides an R client for the Open Targets REST API ().
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Authors@R: person("Michael", "Maguire", email = "mmaguire@ebi.ac.uk", role = c("aut", "cre"))
+Description: This package provides a set of R classes to dowload Open Targets data using the REST API.
 Depends: R (>= 3.2.2)
 License: What license is it under?
 LazyData: true
