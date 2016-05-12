@@ -1,5 +1,3 @@
-# Get information on a disease. New methods to be added. Testing needed!
-# Currently, the method "getFirstDiseaseEFOID()" can be used to get the EFO ID for a disease term
 #' A Reference Class to return information on diseases.
 #'
 #' @field utilsObj An instance of class RestUtils
