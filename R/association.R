@@ -4,7 +4,7 @@
 #' @field ensemblGeneID The ensembl gene identifer for the gene of interest (ENSG..).
 #' @field efoID An EFO disease name identifier (EFO_...) for the disease of interest.
 #' @field associationObjectAsList A list representing the gene-disease association object.
-#'
+#' @export Association
 Association <- setRefClass("Association",
   fields = list(
     utilsObj = "ANY",

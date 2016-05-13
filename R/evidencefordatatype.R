@@ -2,7 +2,7 @@
 #'
 #' @field utilsObj An instance of class RestUtils
 #' @field dataTypeName The name of a data type in the Open Targets platform.
-#'
+#' @export EvidenceForDataType
 EvidenceForDataType<-setRefClass("EvidenceForDataType",
   fields = list(
     dataTypeName = "character",

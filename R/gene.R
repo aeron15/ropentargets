@@ -3,7 +3,7 @@
 #' @field utilsObj An instance of class RestUtils
 #' @field geneSymbol The gene name or gene symbol as string.
 #' @field geneList A list containing platform information for a gene.
-#'
+#' @export Gene
 Gene <- setRefClass("Gene",
   fields = list(
     geneSymbol = "character",

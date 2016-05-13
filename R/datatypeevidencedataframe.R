@@ -1,7 +1,7 @@
 #' A Reference Class to generate evidence data frames by extracting certain field values from evidence objects.
 #'
 #' @field evStrChunks A list of lists of evidence objects as returned by method 'getEvStrAll' in class 'EvidenceForDataType'.
-#'
+#' @export DataTypeEvidenceDataFrame
 DataTypeEvidenceDataFrame<-setRefClass("DataTypeEvidenceDataFrame",
   fields = list(
     evStrChunks = "list"

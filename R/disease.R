@@ -3,7 +3,7 @@
 #' @field utilsObj An instance of class RestUtils
 #' @field diseaseName The disease name as string.
 #' @field diseaseNameList A list containing platform information for a disease.
-#'
+#' @export Disease
 Disease <- setRefClass("Disease",
   fields = list(
     diseaseName = "character",

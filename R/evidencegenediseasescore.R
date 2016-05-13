@@ -3,7 +3,7 @@
 #' @field utilsObj An instance of class RestUtils
 #' @field ensemblGeneID The ensembl gene identifer for the gene of interest (ENSG..).
 #' @field efoID An EFO disease name identifier (EFO_...) for the disease of interest.
-#'
+#' @export EvidenceGeneDiseaseScore
 EvidenceGeneDiseaseScore <- setRefClass("EvidenceGeneDiseaseScore",
   fields = list(
     ensemblGeneID = "character",

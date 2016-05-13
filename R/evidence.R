@@ -1,7 +1,7 @@
 #' A Reference Class to implement GET and POST methods to return individual evidence entities as JSON or as R lists.
 #'
 #' @field utilsObj An instance of class RestUtils
-#'
+#' @export Evidence
 Evidence<-setRefClass("Evidence",
   fields = list(
     utilsObj = "ANY"
