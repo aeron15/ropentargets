@@ -1,8 +1,23 @@
 Package: ropentargets
-Title: Provides an R client for the Open Targets REST API ().
+Title: Provides an R client for the Open Targets REST API (https://
+    www.opentargets.org/)
 Version: 0.0.0.9000
 Authors@R: person("Michael", "Maguire", email = "mmaguire@ebi.ac.uk", role = c("aut", "cre"))
-Description: This package provides a set of R classes to dowload Open Targets data using the REST API.
-Depends: R (>= 3.2.2)
-License: What license is it under?
+Description: This package provides a set of R classes to dowload Open Targets
+    data using the REST API. It is writtent using R Reference Classes and these
+    classes have methods that return either lists, data frames vectors or JSON.
+    Client code instantiates the classes and calls their methods to return the
+    desired data. The types of data that can be returned are information for a given
+    target (gene), disease, data supporting the association between a given target-
+    disease pair, individual evidence data points linking the gene and disease or
+    the underlying JSON evidence documents themselves. These are all explained in
+    the test code.
+Depends:
+    R (>= 3.2.2)
+License: Apache License Version 2.0
+Imports:
+    httr (>= 1.1.0),
+    methods,
+    rjson (>= 0.2.15)
 LazyData: true
+RoxygenNote: 5.0.1

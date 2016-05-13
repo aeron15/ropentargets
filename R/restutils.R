@@ -1,7 +1,7 @@
 #' A Reference Class to manage GET and POST calls to the Open Targets REST API
 #'
 #' @field BASE_URL A character string for the REST API URL
-
+#'
 RestUtils <- setRefClass("RestUtils",
   fields = list(
     BASE_URL = "character"
@@ -14,9 +14,9 @@ RestUtils <- setRefClass("RestUtils",
     processResponse = function(response) {
       "Used for GET responses.
       Returns a three-element list with the status code, the headers and the list returned by the REST call."
-      responseHeaders <- headers(response)
-      statusCode <- status_code(response)
-      responseContent <- content(response)
+      responseHeaders <- httr::headers(response)
+      statusCode <- httr::status_code(response)
+      responseContent <- httr::content(response)
       return(list("statusCode" = statusCode,
                   "responseContent" = responseContent,
                   "responseHeaders" = responseHeaders))
@@ -26,8 +26,8 @@ RestUtils <- setRefClass("RestUtils",
        Process the response using the method 'processResponse()' and return a list.
        Printing the URL used deliberately as a sort of progress indicator and for de-bugging."
       url <- paste0(.self$BASE_URL, subdomain)
-      print(url)
-      response <- GET(url)
+      # print(url)
+      response <- httr::GET(url)
       processedResponse <- .self$processResponse(response)
       return(processedResponse)
     },
@@ -36,9 +36,9 @@ RestUtils <- setRefClass("RestUtils",
        Process the response using the method 'processResponse()' and return a list.
        Printing the URL used deliberately as a sort of progress indicator and for de-bugging."
       url <- paste0(.self$BASE_URL, subdomain)
-      print(url)
+      # print(url)
       body <- list(id = idList)
-      response <- POST(url, body = body, encode = "json")
+      response <- httr::POST(url, body = body, encode = "json")
       processedResponse <- .self$processResponse(response)
       return(processedResponse)
     },

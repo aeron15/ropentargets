@@ -1,8 +1,8 @@
-#' A Reference Class to return information on diseases.
+#' A Reference Class to return information on a given disease.
 #'
 #' @field utilsObj An instance of class RestUtils
 #' @field diseaseName The disease name as string.
-#' @field diseaseNameList A list containing information for a disease.
+#' @field diseaseNameList A list containing platform information for a disease.
 #'
 Disease <- setRefClass("Disease",
   fields = list(

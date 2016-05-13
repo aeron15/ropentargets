@@ -4,9 +4,9 @@
 \name{Disease-class}
 \alias{Disease}
 \alias{Disease-class}
-\title{A Reference Class to return information on diseases.}
+\title{A Reference Class to return information on a given disease.}
 \description{
-A Reference Class to return information on diseases.
+A Reference Class to return information on a given disease.
 }
 \section{Fields}{
 
@@ -15,7 +15,7 @@ A Reference Class to return information on diseases.
 
 \item{\code{diseaseName}}{The disease name as string.}
 
-\item{\code{diseaseNameList}}{A list containing information for a disease.}
+\item{\code{diseaseNameList}}{A list containing platform information for a disease.}
 }}
 \section{Methods}{
 

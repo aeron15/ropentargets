@@ -4,7 +4,7 @@
 #' @field allStatsAsList A list that is set in the constructor that contains all the information from the utils/stats end-point.
 #' @field dataTypeNames A vector containing all the names of all the data types currently in the Open Targets platform.
 #' @field dataSourceNamesForDataTypesList A list mapping data source names to their data type names.
-#'
+#' @export DataStats
 DataStats <- setRefClass("DataStats",
   fields = list(
     utilsObj = "ANY",
