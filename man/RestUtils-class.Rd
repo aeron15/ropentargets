@@ -5,6 +5,12 @@
 \alias{RestUtils}
 \alias{RestUtils-class}
 \title{A Reference Class to manage GET and POST calls to the Open Targets REST API}
+\arguments{
+\item{The}{sub-domain part of the URL to be used by the REST GET API call}
+}
+\value{
+A list summariging the response
+}
 \description{
 A Reference Class to manage GET and POST calls to the Open Targets REST API
 }
@@ -28,9 +34,12 @@ Printing the URL used deliberately as a sort of progress indicator and for de-bu
 Process the response using the method 'processResponse()' and return a list.
 Printing the URL used deliberately as a sort of progress indicator and for de-bugging.}
 
-\item{\code{initialize()}}{Initialize with no arguments. Sets the base URL field.}
+\item{\code{initialize()}}{Initialize with no arguments. Sets the base URL field.
+@return .self}
 
 \item{\code{processResponse(response)}}{Used for GET responses.
-Returns a three-element list with the status code, the headers and the list returned by the REST call.}
+Returns a three-element list with the status code, the headers and the list returned by the REST call.
+@param list A response object as returned by a GET or POST
+@return list Three values for status code and response content and header}
 }}
 

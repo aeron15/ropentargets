@@ -22,7 +22,7 @@ Evidence<-setRefClass("Evidence",
     getSingleEvidenceAsJson = function(evidenceID) {
       "Convert evidence string for a given ID (32 character hashed value)) to JSON and return the JSON."
       evidenceList <- .self$getSingleEvidenceAsList(evidenceID)
-      return(toJSON(evidenceList))
+      return(rjson::toJSON(evidenceList))
     },
     getMultipleEvidencesAsList = function(evidenceIDList) {
       "Given a list of evidence string IDs (32 character hashed values),
@@ -38,15 +38,15 @@ Evidence<-setRefClass("Evidence",
       multipleEvidencesAsList <- .self$getMultipleEvidencesAsList(evidenceIDList)
       # Extract the list of evidence string lists with name "data".
       evidenceStringList <- multipleEvidencesAsList[['data']]
-      # Ignore lapply return value.
       for (evidenceString in evidenceStringList) {
-        cat(toJSON(evidenceString),file = fileFullPath, sep="\n",append=TRUE)
+        print("ok")
+        cat(rjson::toJSON(evidenceString),file = fileFullPath, sep="\n",append=TRUE)
       }
       return(NULL)
     },
     getMultipleEvidencesAsJson = function(evidenceIDList) {
       "Convert list returned by method 'getMultipleEvidencesAsList()' to JSON and return the JSON."
-      multipleEvidencesAsJson <- toJSON(.self$getMultipleEvidencesAsList(evidenceIDList))
+      multipleEvidencesAsJson <- rjson::toJSON(.self$getMultipleEvidencesAsList(evidenceIDList))
       return(multipleEvidencesAsJson)
     }
   )

@@ -8,12 +8,15 @@ RestUtils <- setRefClass("RestUtils",
   ),
   methods = list(
     initialize = function() {
-      "Initialize with no arguments. Sets the base URL field."
+      "Initialize with no arguments. Sets the base URL field.
+      @return .self"
       BASE_URL <<- 'https://www.targetvalidation.org/api/latest/public'
     },
     processResponse = function(response) {
       "Used for GET responses.
-      Returns a three-element list with the status code, the headers and the list returned by the REST call."
+      Returns a three-element list with the status code, the headers and the list returned by the REST call.
+      @param list A response object as returned by a GET or POST
+      @return list Three values for status code and response content and header"
       responseHeaders <- httr::headers(response)
       statusCode <- httr::status_code(response)
       responseContent <- httr::content(response)
@@ -21,6 +24,10 @@ RestUtils <- setRefClass("RestUtils",
                   "responseContent" = responseContent,
                   "responseHeaders" = responseHeaders))
     },
+
+    #' @param The sub-domain part of the URL to be used by the REST GET API call
+    #' @return A list summariging the response
+    #'
     getRESTResponse = function(subdomain) {
       "Run a GET request, process the response and return the resulting list.
        Process the response using the method 'processResponse()' and return a list.
