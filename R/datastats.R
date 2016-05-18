@@ -5,7 +5,8 @@
 #' @field dataTypeNames A vector containing all the names of all the data types currently in the Open Targets platform.
 #' @field dataSourceNamesForDataTypesList A list mapping data source names to their data type names.
 #' @export DataStats
-DataStats <- setRefClass("DataStats",
+DataStats <- setRefClass(
+  "DataStats",
   fields = list(
     utilsObj = "ANY",
     allStatsAsList = "list",
@@ -17,14 +18,18 @@ DataStats <- setRefClass("DataStats",
       "Initialize with no arguments.
       Calls self methods to set field values."
       utilsObj <<- RestUtils$new()
-      allStatsAsList <<- .self$setAllStatsAsList()
-      dataTypeNames <<- .self$setDataTypeNames()
-      dataSourceNamesForDataTypesList <<- .self$setDataSourceNamesForDataTypesList()
+      allStatsAsList <<-
+        .self$setAllStatsAsList()
+      dataTypeNames <<-
+        .self$setDataTypeNames()
+      dataSourceNamesForDataTypesList <<-
+        .self$setDataSourceNamesForDataTypesList()
     },
     setAllStatsAsList = function() {
       "Called in initialize() to set field allStatsAsList."
       subdomain <- '/utils/stats'
-      RESTResponse <- utilsObj$getRESTResponse(subdomain)
+      RESTResponse <-
+        utilsObj$getRESTResponse(subdomain)
       utilsObj$checkRESTResponse(RESTResponse)
       return(RESTResponse$responseContent)
     },
@@ -40,7 +45,8 @@ DataStats <- setRefClass("DataStats",
       "Return data type names as vector.
       Called in initialize() to set field dataSourceNames.
       Uses the allStatsAsList field set in initialize()."
-      evidenceStringStats <- allStatsAsList$evidencestrings$datatypes
+      evidenceStringStats <-
+        allStatsAsList$evidencestrings$datatypes
       return(names(allStatsAsList$evidencestrings$datatypes))
     },
     getDataTypeListByName = function(dataTypeName) {
@@ -53,8 +59,10 @@ DataStats <- setRefClass("DataStats",
     getDataTypeCounts = function(countTypeName) {
       dataTypeCountList <- list()
       for (dataTypeName in dataTypeNames) {
-        typeCount <- allStatsAsList[[countTypeName]]$datatypes[[dataTypeName]]$total
-        dataTypeCountList[[dataTypeName]] <- typeCount
+        typeCount <-
+          allStatsAsList[[countTypeName]]$datatypes[[dataTypeName]]$total
+        dataTypeCountList[[dataTypeName]] <-
+          typeCount
       }
       return(dataTypeCountList)
     },
@@ -72,8 +80,10 @@ DataStats <- setRefClass("DataStats",
     setDataSourceNamesForDataTypesList = function() {
       dataSourceNamesForDataTypes = list()
       for (dataTypeName in dataTypeNames) {
-        dataSourceNamesForDataType <- names(allStatsAsList$evidencestrings$datatypes[[dataTypeName]]$datasources)
-        dataSourceNamesForDataTypes[[dataTypeName]] <- dataSourceNamesForDataType
+        dataSourceNamesForDataType <-
+          names(allStatsAsList$evidencestrings$datatypes[[dataTypeName]]$datasources)
+        dataSourceNamesForDataTypes[[dataTypeName]] <-
+          dataSourceNamesForDataType
       }
       return(dataSourceNamesForDataTypes)
     },
@@ -90,20 +100,24 @@ DataStats <- setRefClass("DataStats",
       dataSourceCountsList <- list()
       for (dataTypeName in dataTypeNames) {
         for (dataSourceName in dataSourceNamesForDataTypesList[[dataTypeName]]) {
-          dataSourceCount <- allStatsAsList[[countTypeName]]$datatypes[[dataTypeName]]$datasources[[dataSourceName]]$total
-          dataSourceCountsList[[dataSourceName]] <- dataSourceCount
+          dataSourceCount <-
+            allStatsAsList[[countTypeName]]$datatypes[[dataTypeName]]$datasources[[dataSourceName]]$total
+          dataSourceCountsList[[dataSourceName]] <-
+            dataSourceCount
         }
       }
       return(dataSourceCountsList)
     },
     getDataSourceEvStrCountsList = function() {
       "Return a list mapping data source names to their associated evidence string counts."
-      dataSourceEvStrCountList <- .self$getDataSourceCountsList("evidencestrings")
+      dataSourceEvStrCountList <-
+        .self$getDataSourceCountsList("evidencestrings")
       return(dataSourceEvStrCountList)
     },
     getDataSourceAssocCountsList = function() {
       "Return a list mapping data source names to their associated association counts."
-      dataSourceAssocCountList <- .self$getDataSourceCountsList("associations")
+      dataSourceAssocCountList <-
+        .self$getDataSourceCountsList("associations")
       return(dataSourceAssocCountList)
     }
   )

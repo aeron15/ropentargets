@@ -1,5 +1,5 @@
 ---
-title: "ropentargets package vignette"
+title: "Package Vignette for *ropentargets* REST API Client"
 author: "Michael Maguire"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
