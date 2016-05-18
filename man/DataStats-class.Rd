@@ -33,6 +33,16 @@ Used internally by methods that specify the type of count to return}
 
 \item{\code{getDataSourceEvStrCountsList()}}{Return a list mapping data source names to their associated evidence string counts.}
 
+\item{\code{getDataSourceNamesForDataTypesList()}}{Return field 'dataSourceNamesForDataTypesList' set by method 'setDataSourceNamesForDataTypesList()'}
+
+\item{\code{getDataTypeAssocCountList()}}{Return a list mapping data type names to their association counts.}
+
+\item{\code{getDataTypeCounts(countTypeName)}}{Internal method. Used to get either counts for evidence strings or associations.
+Expects a string argument with value of 'evidencestrings' or 'assocations'.
+Returns a list mapping data type names to counts for the given argument.}
+
+\item{\code{getDataTypeEvStrCountList()}}{Return a list mapping data type names to their evidence string counts.}
+
 \item{\code{getDataTypeListByName(dataTypeName)}}{Return a list with statistics for a given data type name.}
 
 \item{\code{getDataTypeNames()}}{Return vector field value set in in initialize() for data type names for the current version of Open Targets.}
@@ -42,7 +52,11 @@ Calls self methods to set field values.}
 
 \item{\code{setAllStatsAsList()}}{Called in initialize() to set field allStatsAsList.}
 
-\item{\code{setDataTypeNames()}}{Return data type names as vector.
+\item{\code{setDataSourceNamesForDataTypesList()}}{Internal method.
+Return a list of vectors mapping data type names to their associated data sources.
+Set return value to a field name by calling in 'initialize()'.}
+
+\item{\code{setDataTypeNames()}}{Internal method. Return data type names as vector.
 Called in initialize() to set field dataSourceNames.
 Uses the allStatsAsList field set in initialize().}
 }}

@@ -42,7 +42,7 @@ DataStats <- setRefClass(
       return(dataTypeNames)
     },
     setDataTypeNames = function() {
-      "Return data type names as vector.
+      "Internal method. Return data type names as vector.
       Called in initialize() to set field dataSourceNames.
       Uses the allStatsAsList field set in initialize()."
       evidenceStringStats <-
@@ -53,10 +53,10 @@ DataStats <- setRefClass(
       "Return a list with statistics for a given data type name."
       return(allStatsAsList$evidencestrings$datatypes[[dataTypeName]])
     },
-    # Used to get either counts for evidence strings or associations.
-    # Expects a string argument with value of "evidencestrings" or "assocations".
-    # Returns a list mapping data type names to counts for the given argument.
     getDataTypeCounts = function(countTypeName) {
+      "Internal method. Used to get either counts for evidence strings or associations.
+       Expects a string argument with value of 'evidencestrings' or 'assocations'.
+       Returns a list mapping data type names to counts for the given argument."
       dataTypeCountList <- list()
       for (dataTypeName in dataTypeNames) {
         typeCount <-
@@ -66,18 +66,20 @@ DataStats <- setRefClass(
       }
       return(dataTypeCountList)
     },
-    # Return a list mapping data type names to their evidence string counts.
     getDataTypeEvStrCountList = function() {
+      "Return a list mapping data type names to their evidence string counts."
       dataTypeEvStrCountList <- .self$getDataTypeCounts('evidencestrings')
       return(dataTypeEvStrCountList)
     },
     getDataTypeAssocCountList = function() {
+      "Return a list mapping data type names to their association counts."
       dataTypeAssocCountList <- .self$getDataTypeCounts('associations')
       return(dataTypeAssocCountList)
     },
-    # Return a list of vectors mapping data type names to their associated data sources.
-    # Set return value to a field name by calling in "initialize()".
     setDataSourceNamesForDataTypesList = function() {
+      "Internal method.
+      Return a list of vectors mapping data type names to their associated data sources.
+      Set return value to a field name by calling in 'initialize()'."
       dataSourceNamesForDataTypes = list()
       for (dataTypeName in dataTypeNames) {
         dataSourceNamesForDataType <-
@@ -87,9 +89,8 @@ DataStats <- setRefClass(
       }
       return(dataSourceNamesForDataTypes)
     },
-    # Return an instance field list where data type names are mapped to
-    # vectors of associated data source names.
     getDataSourceNamesForDataTypesList = function() {
+      "Return field 'dataSourceNamesForDataTypesList' set by method 'setDataSourceNamesForDataTypesList()'"
       return(dataSourceNamesForDataTypesList)
     },
     getDataSourceCountsList = function(countTypeName) {

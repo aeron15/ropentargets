@@ -16,3 +16,20 @@ The *ropentargets* R package implements an R client to query the Open Targets RE
 Open Targets REST API, please read [this blog](https://blog.opentargets.org/api-getting-started-1/) where the 
 functionality and type of data that can be returned are described in detail. The REST API client described here allows R users to download the data into R data structures where it can be integrated with data gathered from other
 R resources such as [Bioconductor](https://www.bioconductor.org/).
+
+# Examples
+
+## What data types and data sources are in the current version of the platform?
+
+Open Targets integrates data from different sources into data types. The class *DataStats* provides methods to retrieve these counts as shown here:
+
+```{r}
+# Import the package.
+library(ropentargets)
+# Create an instance of the class.
+restStats <- ropentargets::DataStats$new()
+# What data types are available?
+datatypeNames <- restStats$getDataTypeNames()
+# Print the vector.
+print(datatypeNames)
+```
