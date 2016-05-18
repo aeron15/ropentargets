@@ -21,3 +21,6 @@ Imports:
     rjson (>= 0.2.15)
 LazyData: true
 RoxygenNote: 5.0.1
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr

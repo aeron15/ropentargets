@@ -1,0 +1,18 @@
+---
+title: "ropentargets package vignette"
+author: "Michael Maguire"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+# Open Targets
+
+[Open Targets](https://www.opentargets.org/) resource is for biomedical researchers who need to identify a biological target for a new therapy. It is a public-private initiative to generate evidence on the validity of therapeutic targets based on genome-scale experiments and analysis. Open Targets is working to create an R&D framework that applies to a wide range of human diseases, and is committed to sharing its data openly with the scientific community.
+
+The *ropentargets* R package implements an R client to query the Open Targets REST API. To learn more about the
+Open Targets REST API, please read [this blog](https://blog.opentargets.org/api-getting-started-1/) where the 
+functionality and type of data that can be returned are described in detail. The REST API client described here allows R users to download the data into R data structures where it can be integrated with data gathered from other
+R resources such as [Bioconductor](https://www.bioconductor.org/).
