@@ -23,13 +23,15 @@ R resources such as [Bioconductor](https://www.bioconductor.org/).
 
 Open Targets integrates data from different sources into data types. The class *DataStats* provides methods to retrieve these counts as shown here:
 
-```{r}
+```r
 # Import the package.
 library(ropentargets)
 # Create an instance of the class.
 restStats <- ropentargets::DataStats$new()
 # What data types are available?
 datatypeNames <- restStats$getDataTypeNames()
-# Print the vector.
+# Print the vector of data types.
 print(datatypeNames)
+print(restStats$getDataTypeListByName("rna_expression"))
 ```
+
