@@ -28,10 +28,87 @@ Open Targets integrates data from different sources into data types. The class *
 library(ropentargets)
 # Create an instance of the class.
 restStats <- ropentargets::DataStats$new()
-# What data types are available?
-datatypeNames <- restStats$getDataTypeNames()
-# Print the vector of data types.
-print(datatypeNames)
-print(restStats$getDataTypeListByName("rna_expression"))
+# What version of the platform are we using?
+print(paste0("REST API Version: ", restStats$getRESTAPIVersion()))
+# Get a data frame summary of the data types and their data sources with counts for associations and evidence strings?
+summaryCountsAsDataFrame <- restStats$getSummaryCountsAsDataFrame()
+print(summaryCountsAsDataFrame)
 ```
+
+Successful retrieval the REST API version confirms that the REST API service is available and informs the user of the version that the R client is using. a note should be made of this for future reference. The data frame returned by the method *getSummaryCountsAsDataFrame* provides a convenient summary of the data types, data sources and thier asssociated evidence and associations acounts that are available in the current Open Targets release. 
+
+## Retrieve information for a disease of interest
+
+The search engine underlying the REST API can deal with disease name synonyms and variable letter casing. Taking the disease "inflammatory bowel disease" as an example, we can retrieve information from the REST API using the *Disease* class and we can use methods it implements to extract the EFO identifier for the best match and then use this to generate data frames containing evidence and association information for that disease.
+
+```r
+# Assuming line "library(ropentargets)"
+
+# Import the package.
+library(ropentargets)
+diseaseName = "inflammatory bowel disease"
+# Create a Disease object.
+diseaseObj <- ropentargets::Disease$new(diseaseName)
+# Print all matched diseases as an EFO-Name list.
+diseaseIDNameMap <- diseaseObj$getDiseaseIDNameMap()
+print(diseaseIDNameMap)
+# Print the disease name for the first match returned by the search engine.
+firstDiseaseName <- diseaseObj$getFirstDiseaseName()
+# Manually check the returned disease label to ensure it matches the expected value.
+print(firstDiseaseName)
+# Get the EFO ID for the first gene.
+efoID <- diseaseObj$getFirstDiseaseEFOID()
+print(efoID)
+# 0.2 is considered a sensible default for the score cut-off.
+cutoffScore <- 0.2
+# Get the evidence for the disease as a data frame.
+ibdEvidenceRecords <- diseaseObj$getEvidenceGenesForDiseaseAsDataFrame(efoID, cutoffScore)
+# Association: There are "direct" and "indirect" associations.
+direct <- 'true'
+# get direct associations.
+ibdAssociationRecordsDirectTrue <- diseaseObj$getAssociationGenesForDiseaseAsDataFrame(efoID, cutoffScore, direct)
+direct <- 'false'
+# Get indirect associations.
+ibdAssociationRecordsDirectFalse <- diseaseObj$getAssociationGenesForDiseaseAsDataFrame(efoID, cutoffScore, direct)
+# How many evidences were returned?
+print(nrow(ibdEvidenceRecords))
+# How many direct associations were returned?
+print(nrow(ibdAssociationRecordsDirectTrue))
+# How many indirect associations were returned?
+print(nrow(ibdAssociationRecordsDirectFalse))
+```
+
+After executing this code, three data frames will have been created that can then be further manipulated in R. They gene data they contain can also be used to create analagous *Gene* objects as shown below.
+
+## Retrieve information for a target (gene) of interest
+
+The previous section demonstrated how to create a *Disease* object and then use this object's methods to return data frames containing the evidence and direct and indirect associations for that disease. This section demonstrates how to perfrom the equivalent operations for a target of interest where a target is a human protein-coding gene. We start by creating a *Gene* object with a gene name argument and then use the *Gene* methods to extract the required information. As with diseases, the underlying search engine handles synonyms and variable casing effectively.
+
+```r
+library(ropentargets)
+geneName = "il13" # Search engine is tolerant of text case differences and can find gene synonyms.
+# Create an "OpenTargetsGene" instance.
+geneObj <- ropentargets::Gene$new(geneName)
+# Print the Ensembl gene ID for the first gene in the returned list.
+# This is assumed to be the best match but needs to be checked.
+ensemblGeneID <- geneObj$getFirstEnsemblGeneID()
+# Print a list mapping the Ensembl gene IDs to gene symbols for all genes returned by the REST API call to the search engine.
+print(geneObj$getGeneIDNameMap())
+print(ensemblGeneID)
+# set the cut-off
+cutoffScore <- 0.2
+diseasesEvidenceForGeneAsDataFrame <- geneObj$getEvidenceDiseasesForGeneAsDataFrame(ensemblGeneID, cutoffScore)
+direct <- 'true'
+diseaseAssocsForGeneDirectTrue <- geneObj$getAssociationDiseasesForGeneAsDataFrame(ensemblGeneID, cutoffScore, direct)
+direct <- 'false'
+diseaseAssocsForGeneDirectFalse <- geneObj$getAssociationDiseasesForGeneAsDataFrame(ensemblGeneID, cutoffScore, direct)
+# Print out the row counts for the three data frames
+print(nrow(diseasesEvidenceForGeneAsDataFrame))
+print(nrow(diseaseAssocsForGeneDirectTrue))
+print(nrow(diseaseAssocsForGeneDirectFalse))
+```
+
+In the example above, the given gene name maps to an Ensembl gene ID that is then passed as an argument to the methods that generate the evidence data frame and the two associations data frames.
+
+
 

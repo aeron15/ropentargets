@@ -5,8 +5,7 @@
 #' @field dataTypeNames A vector containing all the names of all the data types currently in the Open Targets platform.
 #' @field dataSourceNamesForDataTypesList A list mapping data source names to their data type names.
 #' @export DataStats
-DataStats <- setRefClass(
-  "DataStats",
+DataStats <- setRefClass("DataStats",
   fields = list(
     utilsObj = "ANY",
     allStatsAsList = "list",
@@ -120,6 +119,36 @@ DataStats <- setRefClass(
       dataSourceAssocCountList <-
         .self$getDataSourceCountsList("associations")
       return(dataSourceAssocCountList)
+    },
+    getSummaryCountsAsDataFrame = function() {
+      "Return a data frame giving the the data type and source names with association and evidence string counts."
+      #allStatsAsList <- .self$getAllStatsAsList()
+      #dataSourceNamesForDataTypesList <- .self$getDataSourceNamesForDataTypesList()
+      dataSourceEvStrCountsList <- .self$getDataSourceEvStrCountsList()
+      dataSourceAssocCountsList <- .self$getDataSourceAssocCountsList()
+      dataTypeNamesForDataSources <- c()
+      dataSourceNames <- c()
+      dataSourceEvStrCounts <- c()
+      dataSourceAssocCounts <- c()
+      for (dataTypeName in dataTypeNames) {
+        for (dataSourceName in dataSourceNamesForDataTypesList[[dataTypeName]]) {
+          dataTypeNamesForDataSources <- c(dataTypeNamesForDataSources, dataTypeName)
+          dataSourceNames <- c(dataSourceNames, dataSourceName)
+          dataSourceEvStrCount <- dataSourceEvStrCountsList[[dataSourceName]]
+          dataSourceAssocCount <- dataSourceAssocCountsList[[dataSourceName]]
+          dataSourceEvStrCounts <- c(dataSourceEvStrCounts, dataSourceEvStrCount)
+          dataSourceAssocCounts <- c(dataSourceAssocCounts, dataSourceAssocCount)
+        }
+      }
+
+      summaryCountsAsDataFrame <- data.frame(cbind(dataTypeNamesForDataSources, dataSourceNames, dataSourceEvStrCounts,
+                                                   dataSourceAssocCounts), stringsAsFactors = FALSE)
+      names(summaryCountsAsDataFrame) <- c('DataType', 'DataSource', 'EvStrCount', 'AssocCount')
+      return(summaryCountsAsDataFrame)
+    },
+    getRESTAPIVersion = function() {
+      "Return the current version of the Open Targets REST API."
+      return(utilsObj$getRESTAPIVersion())
     }
   )
 )

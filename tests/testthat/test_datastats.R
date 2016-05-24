@@ -9,6 +9,16 @@ test_that("The 'new' method returns an instance of 'DataStats'.", {
   expect_is(dataStats, "DataStats")
 })
 
+test_that("The method 'getRESTAPIVersion' returns a numeric value.", {
+  apiVersion <- dataStats$getRESTAPIVersion()
+  expect_equal(is.numeric(apiVersion), TRUE)
+})
+
+test_that("The method 'getSummaryCountsAsDataFrame' returns a data frame with the expected number of columns.", {
+  summaryCountsAsDataFrame <- dataStats$getSummaryCountsAsDataFrame()
+  expect_equal(is.data.frame(summaryCountsAsDataFrame), TRUE)
+  expect_equal(length(names(summaryCountsAsDataFrame)), 4)
+})
 test_that("The 'getAllStatsAsList' method returns a list containing all the metrics for data in the Open Targets platform.", {
   allStatsAsList <- dataStats$getAllStatsAsList()
   expect_is(allStatsAsList, 'list')
@@ -71,5 +81,6 @@ test_that("Association count for a given data source is an integer.", {
   dataSourceName <- 'cancer_gene_census'
   expect_equal(is.integer(dataSourceAssocCountsList[[dataSourceName]]), TRUE)
 })
+
 
 

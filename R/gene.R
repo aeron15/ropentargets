@@ -79,9 +79,9 @@ Gene <- setRefClass("Gene",
       return(allRecords)
     },
     getEvidenceDiseasesForGeneAsDataFrame = function(ensemblGeneID, cutoffScore, startFrom = 0, direct = 'true') {
-      "Return a data frame with all evidence diseases for a given ensembl gene ID and set of filters.
-       The 'direct'' argument is irrelevant to 'evidence' and only applies to 'associations' so setting it
-       to a default of 'true'."
+      "Return a data frame with all evidence diseases for a given ensembl gene ID and set of filters."
+       # The 'direct'' argument is irrelevant to 'evidence' and only applies to 'associations' so setting it
+       # to a default of 'true'."
       filterType <- 'evidence'
       evidenceDiseasesForGene <- .self$getDiseasesForGeneAsDataFrame(filterType, ensemblGeneID, startFrom, cutoffScore, direct)
       return(evidenceDiseasesForGene)

@@ -33,7 +33,7 @@ RestUtils <- setRefClass("RestUtils",
        Process the response using the method 'processResponse()' and return a list.
        Printing the URL used deliberately as a sort of progress indicator and for de-bugging."
       url <- paste0(.self$BASE_URL, subdomain)
-      # print(url)
+      #print(url)
       response <- httr::GET(url)
       processedResponse <- .self$processResponse(response)
       return(processedResponse)
@@ -43,7 +43,7 @@ RestUtils <- setRefClass("RestUtils",
        Process the response using the method 'processResponse()' and return a list.
        Printing the URL used deliberately as a sort of progress indicator and for de-bugging."
       url <- paste0(.self$BASE_URL, subdomain)
-      # print(url)
+      print(url)
       body <- list(id = idList)
       response <- httr::POST(url, body = body, encode = "json")
       processedResponse <- .self$processResponse(response)
@@ -54,12 +54,15 @@ RestUtils <- setRefClass("RestUtils",
       if(response$statusCode != 200) {
         stop(sprintf("Status code error '%s' returned!", response$statusCode))
       }
+      return(TRUE)
     },
     getRESTAPIVersion = function() {
       "Return the version of the API being used."
       subdomain <- '/utils/version'
-      response <- .self$getRESTResponse(.self$BASE_URL, subdomain)
-      return(response$responseContent)
+      url <- paste0(.self$BASE_URL, subdomain)
+      response <- httr::GET(url)
+      apiVersion <- httr::content(response)
+      return(apiVersion)
     }
   )
 )

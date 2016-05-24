@@ -47,6 +47,10 @@ Returns a list mapping data type names to counts for the given argument.}
 
 \item{\code{getDataTypeNames()}}{Return vector field value set in in initialize() for data type names for the current version of Open Targets.}
 
+\item{\code{getRESTAPIVersion()}}{Return the current version of the Open Targets REST API.}
+
+\item{\code{getSummaryCountsAsDataFrame()}}{Return a data frame giving the the data type and source names with association and evidence string counts.}
+
 \item{\code{initialize()}}{Initialize with no arguments.
 Calls self methods to set field values.}
 

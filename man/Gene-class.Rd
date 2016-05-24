@@ -33,9 +33,7 @@ Used internally.}
 Used internally.}
 
 \item{\code{getEvidenceDiseasesForGeneAsDataFrame(ensemblGeneID, cutoffScore,
-  startFrom = 0, direct = "true")}}{Return a data frame with all evidence diseases for a given ensembl gene ID and set of filters.
-The 'direct'' argument is irrelevant to 'evidence' and only applies to 'associations' so setting it
-to a default of 'true'.}
+  startFrom = 0, direct = "true")}}{Return a data frame with all evidence diseases for a given ensembl gene ID and set of filters.}
 
 \item{\code{getFirstEnsemblGeneID()}}{Returns the first Ensembl gene ID in 'geneList'.
 The first one is assumed to be the best match but needs to be verified.}
