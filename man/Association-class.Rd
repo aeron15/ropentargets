@@ -27,7 +27,7 @@ A Reference Class to return the association object for a gene-disease pair (Ense
 \item{\code{getDataTypesMaxScores()}}{Return a vector with the data types as names for the maximum score values
 in the field 'associationObjectAsList'.}
 
-\item{\code{initialize(ensemblGeneID, efoID)}}{Injitialize with an Ensembl gene ID and an EFO disease identifier.
+\item{\code{initialize(ensemblGeneID, efoID)}}{Initialize with an Ensembl gene ID and an EFO disease identifier.
 Calls an internal method to set the disease-gene list.}
 
 \item{\code{setAssociationObjectAsList()}}{Use the Ensembl gene and EFO disease identifer fields set on initialization to

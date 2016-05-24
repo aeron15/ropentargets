@@ -97,6 +97,18 @@ Disease <- setRefClass("Disease",
       associationGenesForDisease <- .self$getGenesForDiseaseAsDataFrame(filterType, diseaseEFO, startFrom, cutoffScore, direct)
       associationGenesForDisease$DirectEvidenceOnly <- direct
       return(associationGenesForDisease)
+    },
+    getFirstDiseaseSummaryList= function() {
+      "Return a list with summary information for the first disease returned by the search."
+      firstDiseaseSummaryList <- list()
+      firstDisease <- diseaseList$data[[1]]
+      firstDiseaseSummaryList$efoID <- firstDisease$id
+      firstDiseaseSummaryList$description <- firstDisease$data$description
+      firstDiseaseSummaryList$association_count_total <- firstDisease$data$association_counts$total
+      firstDiseaseSummaryList$association_count_direct <- firstDisease$data$association_counts$direct
+      firstDiseaseSummaryList$efo_label <- firstDisease$data$efo_label
+      firstDiseaseSummaryList$efo_url <- firstDisease$data$efo_url
+      return(firstDiseaseSummaryList)
     }
   )
 )

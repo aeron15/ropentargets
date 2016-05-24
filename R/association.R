@@ -14,7 +14,7 @@ Association <- setRefClass("Association",
   ),
   methods = list(
     initialize = function(ensemblGeneID, efoID) {
-      "Injitialize with an Ensembl gene ID and an EFO disease identifier.
+      "Initialize with an Ensembl gene ID and an EFO disease identifier.
       Calls an internal method to set the disease-gene list."
       utilsObj <<- RestUtils$new()
       ensemblGeneID <<- ensemblGeneID

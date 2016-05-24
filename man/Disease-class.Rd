@@ -37,6 +37,8 @@ defined below to ensure that the description matches what is expected.}
 
 \item{\code{getFirstDiseaseName()}}{Return the name for the first disease, assumed to be est match, returned by the search engine.}
 
+\item{\code{getFirstDiseaseSummaryList()}}{Return a list with summary information for the first disease returned by the search.}
+
 \item{\code{getGenesForDiseaseAsDataFrame(filterType, diseaseEFO, startFrom, cutoffScore,
   direct)}}{Used to return both assocoations and evidence genes for a given disease as a data frame.
  The filterType argument determines whether evidences or associations are returned.

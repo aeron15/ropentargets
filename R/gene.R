@@ -19,14 +19,14 @@ Gene <- setRefClass("Gene",
       .self$setGeneList()
     },
     setGeneList = function() {
-      "Set field 'geneList'. Called in 'initialize()'."
+      "Internal method. Set field 'geneList'. Called in 'initialize()'."
       subdomain <- sprintf('/search?q=%s', geneSymbol)
       RESTResponse <- utilsObj$getRESTResponse(subdomain)
       utilsObj$checkRESTResponse(RESTResponse)
       geneList <<- RESTResponse$responseContent
     },
     getGeneList = function() {
-      "Return field 'geneList'."
+      "Return field 'geneList'. This list contains all the gene objects returned by the search."
       return(geneList)
     },
     getFirstEnsemblGeneID = function() {
@@ -87,11 +87,24 @@ Gene <- setRefClass("Gene",
       return(evidenceDiseasesForGene)
     },
     getAssociationDiseasesForGeneAsDataFrame = function(ensemblGeneID, cutoffScore, direct, startFrom = 0) {
-      "Return a data frame with all disease association' for a given ensembl gene ID and set of filters."
+      "Return a data frame with all disease associations for a given ensembl gene ID and set of filters."
       filterType <- 'association'
       associationDiseasesForGene <- .self$getDiseasesForGeneAsDataFrame(filterType, ensemblGeneID, startFrom, cutoffScore, direct)
       associationDiseasesForGene$DirectEvidenceOnly <- direct
       return(associationDiseasesForGene)
+    },
+    getFirstGeneSummaryList = function() {
+      "Return a list with summary information for the first gene returned by the search."
+      firstGeneSummaryList <- list()
+      firstGene <- geneList$data[[1]]
+      firstGeneSummaryList$uniprot_accession <- firstGene$data$uniprot_accessions[[1]]
+      firstGeneSummaryList$approved_symbol <- firstGene$data$approved_symbol
+      firstGeneSummaryList$gene_description <- firstGene$data$description
+      firstGeneSummaryList$approved_name <- firstGene$data$approved_name
+      firstGeneSummaryList$ensembl_gene_id <- firstGene$id
+      firstGeneSummaryList$association_count_total <- firstGene$data$association_counts$total
+      firstGeneSummaryList$association_count_direct <- firstGene$data$association_counts$direct
+      return(firstGeneSummaryList)
     }
   )
 )

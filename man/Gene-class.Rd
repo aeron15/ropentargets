@@ -38,6 +38,8 @@ Used internally.}
 \item{\code{getFirstEnsemblGeneID()}}{Returns the first Ensembl gene ID in 'geneList'.
 The first one is assumed to be the best match but needs to be verified.}
 
+\item{\code{getFirstGeneSummaryList()}}{Return a list with summary information for the first gene returned by the search.}
+
 \item{\code{getGeneIDNameMap()}}{Return a list mapping Ensembl gene IDs to gene symbols
 for all genes returned by the search engine for the gene name
 set in 'initialize()'.}
