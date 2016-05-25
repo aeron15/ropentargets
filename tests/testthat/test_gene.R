@@ -14,10 +14,10 @@ test_that("The first gene returned by the search engine has the expected Ensembl
   expect_equal(ensemblGeneID, expectedEnsemblGeneID)
 })
 
-test_that("Method 'getGeneIDNameMap()' returns a list of length > 1", {
+test_that("Method 'getGeneIDNameMap()' returns a list of length > 0", {
   geneIDNameMap <- geneObj$getGeneIDNameMap()
   expect_is(geneIDNameMap, 'list')
-  expect_gt(length(geneIDNameMap), 1)
+  expect_gt(length(geneIDNameMap), 0)
 })
 
 test_that("Method 'getEvidenceDiseasesForGeneAsDataFrame()' returns a data frame", {
@@ -27,14 +27,15 @@ test_that("Method 'getEvidenceDiseasesForGeneAsDataFrame()' returns a data frame
   expect_is(diseasesEvidenceForGeneAsDataFrame, 'data.frame')
 })
 
-test_that("Method 'getAssociationDiseasesForGeneAsDataFrame' returns a data frame.", {
+test_that("Method 'getAssociationDiseasesForGeneAsDataFrame' returns a data frame", {
   ensemblGeneID <- geneObj$getFirstEnsemblGeneID()
   cutoffScore <- 0.2
   direct <- 'true'
   diseaseAssocsForGeneDirectTrue <- geneObj$getAssociationDiseasesForGeneAsDataFrame(ensemblGeneID, cutoffScore, direct)
+  expect_is(diseaseAssocsForGeneDirectTrue, 'data.frame')
 })
 
-test_that("Method 'getFirstGeneSummaryList' returns a list with expected fields.", {
+test_that("Method 'getFirstGeneSummaryList' returns a list with expected fields", {
   firstGeneSummaryList <- geneObj$getFirstGeneSummaryList()
   expect_is(firstGeneSummaryList, 'list')
   expectedEnsemblGeneID <- 'ENSG00000167207'

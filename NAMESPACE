@@ -2,8 +2,6 @@
 
 export(Association)
 export(DataStats)
-export(DataTypeEvidenceDataFrame)
 export(Disease)
 export(Evidence)
-export(EvidenceForDataType)
 export(Gene)

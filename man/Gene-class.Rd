@@ -21,7 +21,7 @@ A Reference Class to return information on a given gene.
 
 \describe{
 \item{\code{getAssociationDiseasesForGeneAsDataFrame(ensemblGeneID, cutoffScore, direct,
-  startFrom = 0)}}{Return a data frame with all disease association' for a given ensembl gene ID and set of filters.}
+  startFrom = 0)}}{Return a data frame with all disease associations for a given ensembl gene ID and set of filters.}
 
 \item{\code{getDiseasesForGeneAsDataFrame(filterType, ensemblGeneID, startFrom, cutoffScore,
   direct)}}{Used to return both associations and evidence genes for a given disease as a data frame.
@@ -44,11 +44,11 @@ The first one is assumed to be the best match but needs to be verified.}
 for all genes returned by the search engine for the gene name
 set in 'initialize()'.}
 
-\item{\code{getGeneList()}}{Return field 'geneList'.}
+\item{\code{getGeneList()}}{Return field 'geneList'. This list contains all the gene objects returned by the search.}
 
 \item{\code{initialize(geneSymbol)}}{Provide a gene symbol or gene name as single argument.
 Calls a self method to populate 'geneList'.}
 
-\item{\code{setGeneList()}}{Set field 'geneList'. Called in 'initialize()'.}
+\item{\code{setGeneList()}}{Internal method. Set field 'geneList'. Called in 'initialize()'.}
 }}
 

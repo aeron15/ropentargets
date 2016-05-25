@@ -27,6 +27,7 @@ return a list of lists where the inner lists are evidence strings.}
 
 \item{\code{initialize()}}{Initialize with no arguments.}
 
-\item{\code{writeEvStrAsJsonToFile(evidenceIDList, fileFullPath)}}{Write JSONs returned for a given list of one or more evidence string IDs to a given file, one JSON per line.}
+\item{\code{writeEvStrAsJsonToFile(evidenceIDList, fileFullPath)}}{Write JSONs returned for a given list of one or more evidence string IDs to a given file, one JSON per line.
+On success returns TRUE.}
 }}
 

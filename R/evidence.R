@@ -34,15 +34,16 @@ Evidence<-setRefClass("Evidence",
       return(multipleEvidenceList)
     },
     writeEvStrAsJsonToFile = function(evidenceIDList, fileFullPath) {
-      "Write JSONs returned for a given list of one or more evidence string IDs to a given file, one JSON per line."
+      "Write JSONs returned for a given list of one or more evidence string IDs to a given file, one JSON per line.
+      On success returns TRUE."
       multipleEvidencesAsList <- .self$getMultipleEvidencesAsList(evidenceIDList)
       # Extract the list of evidence string lists with name "data".
       evidenceStringList <- multipleEvidencesAsList[['data']]
       for (evidenceString in evidenceStringList) {
-        print("ok")
-        cat(rjson::toJSON(evidenceString),file = fileFullPath, sep="\n",append=TRUE)
+        id <- evidenceString$id
+        cat(paste0(id, "\t", rjson::toJSON(evidenceString)),file = fileFullPath, sep="\n",append=TRUE)
       }
-      return(NULL)
+      return(TRUE)
     },
     getMultipleEvidencesAsJson = function(evidenceIDList) {
       "Convert list returned by method 'getMultipleEvidencesAsList()' to JSON and return the JSON."

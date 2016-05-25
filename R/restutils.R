@@ -43,7 +43,7 @@ RestUtils <- setRefClass("RestUtils",
        Process the response using the method 'processResponse()' and return a list.
        Printing the URL used deliberately as a sort of progress indicator and for de-bugging."
       url <- paste0(.self$BASE_URL, subdomain)
-      print(url)
+      #print(url)
       body <- list(id = idList)
       response <- httr::POST(url, body = body, encode = "json")
       processedResponse <- .self$processResponse(response)
