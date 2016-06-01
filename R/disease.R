@@ -11,13 +11,15 @@ Disease <- setRefClass("Disease",
     diseaseList = "list"
   ),
   methods = list(
-    initialize = function(diseaseName) {
-      "Provide a disease name as the single initialization argument.
+    initialize = function(diseaseName = "") {
+      "Provide a disease name as the single initialization argument, default is an empty string.
        The underlying search engine can deal with approximate spellings, synonyms and
        text case differences."
       diseaseName <<- diseaseName
       utilsObj <<- RestUtils$new()
-      .self$setDiseaseList()
+      if(!diseaseName == "") {
+        .self$setDiseaseList()
+      }
     },
     setDiseaseList = function() {
       "Set the field 'diseaseList'. Called in initialize()."

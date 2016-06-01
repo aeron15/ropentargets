@@ -11,12 +11,14 @@ Gene <- setRefClass("Gene",
     utilsObj = "ANY"
   ),
   methods = list(
-    initialize = function(geneSymbol) {
-      "Provide a gene symbol or gene name as single argument.
+    initialize = function(geneSymbol = "") {
+      "Provide a gene symbol or gene name as single argument the default is an empty string.
       Calls a self method to populate 'geneList'."
       geneSymbol <<- geneSymbol
       utilsObj <<- RestUtils$new()
-      .self$setGeneList()
+      if(!geneSymbol == "") {
+        .self$setGeneList()
+      }
     },
     setGeneList = function() {
       "Internal method. Set field 'geneList'. Called in 'initialize()'."

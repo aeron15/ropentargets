@@ -48,3 +48,16 @@ test_that("Method 'getFirstDiseaseSummaryList' returns a list with expected fiel
   expect_equal(firstDiseaseSummaryList$efo_label, "Crohn's disease")
   expect_equal(firstDiseaseSummaryList$efo_url, 'http://www.ebi.ac.uk/efo/EFO_0000384')
 })
+
+test_that("When constructor argument 'diseaseName' is empty that the Disease object is created", {
+  diseaseObjNoName <- ropentargets::Disease()
+  expect_is(diseaseObjNoName, 'Disease')
+})
+
+test_that("When constructor argument 'diseaseName' is empty that evidence data frame is returned for given EFO ID.", {
+  efoID <- 'EFO_0000384' # "Crohn's disease"
+  diseaseObjNoName <- ropentargets::Disease()
+  cutoffScore <- 0.2
+  genesEvidenceForDiseaseAsDataFrame <- diseaseObjNoName$getEvidenceGenesForDiseaseAsDataFrame(efoID, cutoffScore)
+  expect_is(genesEvidenceForDiseaseAsDataFrame, 'data.frame')
+})

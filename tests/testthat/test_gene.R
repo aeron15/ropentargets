@@ -50,3 +50,17 @@ test_that("Method 'getFirstGeneSummaryList' returns a list with expected fields"
   expect_true(is.numeric(assocTotalCount))
   expect_equal(expectedGeneSymbol, approvedSymbol)
 })
+
+test_that("When constructor argument 'geneName' is empty that the Gene object is created", {
+  geneObjNoName <- ropentargets::Gene()
+  expect_is(geneObjNoName, 'Gene')
+})
+
+test_that("When constructor argument 'geneName' is empty that evidence data frame is returned for given Ensembl gene.", {
+  ensemblGeneID <- 'ENSG00000167207' # "NOD2"
+  geneObjNoName <- ropentargets::Gene()
+  cutoffScore <- 0.2
+  diseasesEvidenceForGeneAsDataFrame <- geneObjNoName$getEvidenceDiseasesForGeneAsDataFrame(ensemblGeneID, cutoffScore)
+  expect_is(diseasesEvidenceForGeneAsDataFrame, 'data.frame')
+})
+
