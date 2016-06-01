@@ -46,7 +46,7 @@ set in 'initialize()'.}
 
 \item{\code{getGeneList()}}{Return field 'geneList'. This list contains all the gene objects returned by the search.}
 
-\item{\code{initialize(geneSymbol)}}{Provide a gene symbol or gene name as single argument.
+\item{\code{initialize(geneSymbol = "")}}{Provide a gene symbol or gene name as single argument the default is an empty string.
 Calls a self method to populate 'geneList'.}
 
 \item{\code{setGeneList()}}{Internal method. Set field 'geneList'. Called in 'initialize()'.}

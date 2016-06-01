@@ -49,7 +49,7 @@ defined below to ensure that the description matches what is expected.}
   cutoffScore, direct)}}{This method is used internally by the class. It uses the 'filterType' argument to determine whether 'associations' or 'evidence' is returned'.
 Return a data frame of gene records for a given EFO ID for 'filterType' =  'evidence/filter?disease' || 'association/filter?disease.}
 
-\item{\code{initialize(diseaseName)}}{Provide a disease name as the single initialization argument.
+\item{\code{initialize(diseaseName = "")}}{Provide a disease name as the single initialization argument, default is an empty string.
 The underlying search engine can deal with approximate spellings, synonyms and
 text case differences.}
 
