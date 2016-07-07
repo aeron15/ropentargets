@@ -30,8 +30,7 @@ test_that("Method 'getEvidenceDiseasesForGeneAsDataFrame()' returns a data frame
 test_that("Method 'getAssociationDiseasesForGeneAsDataFrame' returns a data frame", {
   ensemblGeneID <- geneObj$getFirstEnsemblGeneID()
   cutoffScore <- 0.2
-  direct <- 'true'
-  diseaseAssocsForGeneDirectTrue <- geneObj$getAssociationDiseasesForGeneAsDataFrame(ensemblGeneID, cutoffScore, direct)
+  diseaseAssocsForGeneDirectTrue <- geneObj$getAssociationDiseasesForGeneAsDataFrame(ensemblGeneID, cutoffScore)
   expect_is(diseaseAssocsForGeneDirectTrue, 'data.frame')
 })
 

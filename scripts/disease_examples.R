@@ -10,9 +10,6 @@ print(fetchedDiseaseName)
 # 0.2 is considered a sensible default for the score cut-off.
 cutoffScore <- 0.2
 # Get the evidence for the disease.
-ibdEvidenceRecords <- diseaseObj$getEvidenceGenesForDiseaseAsDataFrame(efoID, cutoffScore)
+evidenceGenesForDiseaseAsDataFrame <- diseaseObj$getEvidenceGenesForDiseaseAsDataFrame(efoID, cutoffScore)
 # Association
-direct <- 'true'
-ibdAssociationRecordsDirectTrue <- diseaseObj$getAssociationGenesForDiseaseAsDataFrame(efoID, cutoffScore, direct)
-direct <- 'false'
-ibdAssociationRecordsDirectFalse <- diseaseObj$getAssociationGenesForDiseaseAsDataFrame(efoID, cutoffScore, direct)
+associationGenesForDiseaseAsDataFrame <- diseaseObj$getAssociationGenesForDiseaseAsDataFrame(efoID, cutoffScore)

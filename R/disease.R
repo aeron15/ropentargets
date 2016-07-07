@@ -93,11 +93,20 @@ Disease <- setRefClass("Disease",
       evidenceGenesForDisease <- .self$getGenesForDiseaseAsDataFrame(filterType, diseaseEFO, startFrom, cutoffScore, direct)
       return(evidenceGenesForDisease)
     },
-    getAssociationGenesForDiseaseAsDataFrame = function(diseaseEFO, cutoffScore, direct, startFrom = 0) {
+    getAssociationGenesForDiseaseAsDataFrame = function(diseaseEFO, cutoffScore, startFrom = 0) {
       "Return a data frame with all association genes for a given disease EFO and set of filters."
       filterType <- 'association/filter?disease'
-      associationGenesForDisease <- .self$getGenesForDiseaseAsDataFrame(filterType, diseaseEFO, startFrom, cutoffScore, direct)
-      associationGenesForDisease$DirectEvidenceOnly <- direct
+      direct <- 'true'
+      associationGenesForDiseaseDirect <- .self$getGenesForDiseaseAsDataFrame(filterType, diseaseEFO, startFrom, cutoffScore, direct)
+      if(nrow(associationGenesForDiseaseDirect) > 0) {
+        associationGenesForDiseaseDirect$Direct <- direct
+      }
+      direct <- 'false'
+      associationGenesForDiseaseIndirect <- .self$getGenesForDiseaseAsDataFrame(filterType, diseaseEFO, startFrom, cutoffScore, direct)
+      if(nrow(associationGenesForDiseaseIndirect) > 0) {
+        associationGenesForDiseaseIndirect$Direct <- direct
+      }
+      associationGenesForDisease <- rbind(associationGenesForDiseaseDirect, associationGenesForDiseaseIndirect)
       return(associationGenesForDisease)
     },
     getFirstDiseaseSummaryList= function() {
