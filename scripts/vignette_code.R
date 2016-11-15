@@ -1,3 +1,4 @@
+library(methods)
 # Import the package.
 library(ropentargets)
 diseaseName = "inflammatory bowel disease"

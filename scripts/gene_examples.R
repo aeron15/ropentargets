@@ -1,3 +1,4 @@
+library(methods)
 library(ropentargets)
 geneName = "il13" # Search engine is tolerant of text case differences and can find gene synonyms.
 # Create an "OpenTargetsGene" instance.

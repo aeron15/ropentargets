@@ -1,3 +1,4 @@
+library(methods)
 library(ropentargets)
 diseaseName = "inflammatory bowel disease"
 # Create an "openTargetsDisease" object

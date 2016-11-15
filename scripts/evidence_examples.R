@@ -1,3 +1,4 @@
+library(methods)
 library(ropentargets)
 evidenceObj <- ropentargets::Evidence$new()
 evidenceID <- '79f94e736879906aa48d4284a0dc22c8'
