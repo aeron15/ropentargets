@@ -1,3 +1,4 @@
+library(methods)
 library(ropentargets)
 # Create instance of class that provides methods for obtaining information on
 # data types and data sources.
