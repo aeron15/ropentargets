@@ -1,3 +1,4 @@
+library(methods)
 # Example code to retrieve basic information as a data frame from the evidence strings for an entire data type
 # using the REST API.
 # The code uses methods in class "DataTypeDataFrame" that itself uses methods in class
